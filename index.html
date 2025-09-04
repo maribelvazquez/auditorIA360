@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuditorIA 360</title>
+    <title>AuditorIA 360 (v4 - Funcional)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -32,24 +32,47 @@
 
     <main class="max-w-4xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-center gap-2 mb-8 p-1 bg-gray-200 rounded-full">
-            <button id="btn-guia" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🗺️ Guía Estratégica</button>
-            <button id="btn-asistente" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🔍 Asistente de Hallazgos</button>
-            <button id="btn-simulador" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">📝 Simulador de Examen</button>
+            <button data-module="guia" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🗺️ Guía Estratégica</button>
+            <button data-module="asistente" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🔍 Asistente de Hallazgos</button>
+            <button data-module="simulador" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">📝 Simulador de Examen</button>
         </div>
 
         <div id="module-guia" class="module-content fade-in">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-semibold mb-4 text-custom-dark-gray">Guía Estratégica de Auditoría PLD/FT</h2>
-                <div class="space-y-4 text-custom-gray">
-                    <p>Este apartado resume los conceptos clave de los <strong>Lineamientos para la elaboración del informe de auditoría</strong>.</p>
-                    <h3 class="font-bold text-lg text-gray-700">Objetivo del Informe de Auditoría</h3>
-                    <p>Brindar la información necesaria para adoptar medidas que hagan más eficientes los procesos, mecanismos y herramientas para prevenir el lavado de dinero y financiamiento al terrorismo.</p>
-                    <h3 class="font-bold text-lg text-gray-700">Los 5 Niveles de Cumplimiento</h3>
-                    <p>La evaluación de cada una de las obligaciones debe ser en cualquiera de los cinco sentidos siguientes:</p>
+            <div class="bg-white p-6 rounded-lg shadow-md space-y-6 text-custom-dark-gray">
+                <h2 class="text-2xl font-semibold">Guía Estratégica de Auditoría PLD/FT</h2>
+                
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Objetivo del Informe de Auditoría</h3>
+                    <p>Brindar la información necesaria para adoptar medidas que hagan más eficientes los procesos y herramientas para prevenir el Lavado de Dinero y Financiamiento al Terrorismo (LD/FT), así como para establecer planes de acción correctivos.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Requisitos Clave del Auditor</h3>
+                     <ul class="list-disc list-inside pl-4 space-y-1">
+                        <li>Contar con **Certificado vigente** emitido por la CNBV.</li>
+                        <li>Tener experiencia demostrable en materia de PLD/FT.</li>
+                        <li>No ser consejero, directivo, Oficial de Cumplimiento o empleado del Sujeto Supervisado (aplica a auditores externos).</li>
+                        <li>No tener litigios pendientes con el Sujeto Supervisado.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Planeación de la Auditoría (Lineamiento SEXTO)</h3>
+                    <p>El auditor debe ejecutar una metodología que incluya, como mínimo:</p>
+                     <ul class="list-disc list-inside pl-4 space-y-1">
+                        <li><strong>Cuestionario Inicial:</strong> Para conocer al Sujeto Supervisado.</li>
+                        <li><strong>Análisis de Riesgos:</strong> Para evaluar la exposición al riesgo con base en productos, clientes, geografías y canales.</li>
+                        <li><strong>Programa de Trabajo:</strong> Con calendario, temas a evaluar y pruebas a realizar.</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Los 5 Niveles de Cumplimiento (Calificaciones)</h3>
+                    <p>La evaluación de cada obligación debe resultar en una de cinco calificaciones posibles:</p>
                     <ul class="list-disc list-inside pl-4 space-y-2">
-                        <li><strong>Cumple:</strong> La eficacia se demuestra con el cumplimiento de las obligaciones y no se requieren mejoras.</li>
-                        <li><strong>Cumple Mayoritariamente:</strong> La eficacia no puede ser completamente demostrada; se requiere al menos una recomendación de mejora.</li>
-                        <li><strong>Cumple Parcialmente:</strong> No hay evidencia objetiva suficiente para demostrar el cumplimiento; se requiere al menos un hallazgo.</li>
+                        <li><strong>Cumple:</strong> La eficacia se demuestra totalmente y no se requieren mejoras.</li>
+                        <li><strong>Cumple Mayoritariamente:</strong> La eficacia no es completa; se requieren recomendaciones de mejora.</li>
+                        <li><strong>Cumple Parcialmente:</strong> No hay evidencia objetiva suficiente para demostrar la eficacia; se requiere al menos un hallazgo.</li>
                         <li><strong>No Cumple:</strong> El cumplimiento no cubre los elementos necesarios o actualiza una sanción.</li>
                         <li><strong>No Aplica:</strong> El requisito no es exigible por las características del Sujeto Supervisado.</li>
                     </ul>
@@ -99,8 +122,8 @@
                 { id: 83, categoria: "10. LISTAS", obligacion: "a) Cuenta con las listas oficialmente reconocidas que emitan autoridades mexicanas [...] de personas vinculadas con PLD/FT.", fuente_lineamiento: "Lineamiento Octavo, A, X, a)", fuente_disposicion_bancos: "Disposición 70ª" }
             ];
 
-            const buttons = [ document.getElementById('btn-guia'), document.getElementById('btn-asistente'), document.getElementById('btn-simulador') ];
-            const modules = [ document.getElementById('module-guia'), document.getElementById('module-asistente'), document.getElementById('module-simulador') ];
+            const moduleButtons = document.querySelectorAll('.module-btn');
+            const moduleContents = document.querySelectorAll('.module-content');
             const loaders = { asistente: document.getElementById('loader-asistente'), simulador: document.getElementById('loader-simulador') };
             const results = { asistente: document.getElementById('asistente-result'), simulador: document.getElementById('simulador-result') };
             const obligationSelect = document.getElementById('obligation-select');
@@ -110,13 +133,18 @@
             const generateQuestionBtn = document.getElementById('generate-question-btn');
             
             function setupTabs() {
-                buttons[0].classList.add('active');
-                buttons.forEach((button, index) => {
+                moduleButtons[0].classList.add('active');
+                moduleContents.forEach((content, index) => {
+                    if (index !== 0) content.classList.add('hidden');
+                });
+
+                moduleButtons.forEach(button => {
                     button.addEventListener('click', () => {
-                        buttons.forEach(btn => btn.classList.remove('active'));
+                        moduleButtons.forEach(btn => btn.classList.remove('active'));
                         button.classList.add('active');
-                        modules.forEach(module => module.classList.add('hidden'));
-                        modules[index].classList.remove('hidden');
+                        const targetModule = document.getElementById(`module-${button.dataset.module}`);
+                        moduleContents.forEach(content => content.classList.add('hidden'));
+                        targetModule.classList.remove('hidden');
                     });
                 });
             }
@@ -150,7 +178,7 @@
                 results[module].innerHTML = '';
                 btn.disabled = true;
                 try {
-                    const response = await fetch('/.netlify/functions/geminiProxy', {
+                    const response = await fetch('/api/geminiProxy', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -169,7 +197,7 @@
                     if (module === 'simulador') renderSimuladorResult(data);
                 } catch (error) {
                     console.error("Error:", error);
-                    results[module].innerHTML = `<p class="text-red-600 p-4 bg-red-100 rounded-md">Ocurrió un error al contactar a la IA. Revisa la consola para más detalles. (Nota: esta función requiere despliegue en Netlify para operar).</p>`;
+                    results[module].innerHTML = `<p class="text-red-600 p-4 bg-red-100 rounded-md">Ocurrió un error al contactar a la IA. Revisa la consola para más detalles.</p>`;
                 } finally {
                     loaders[module].classList.add('hidden');
                     btn.disabled = false;
@@ -229,3 +257,4 @@
     </script>
 </body>
 </html>
+
