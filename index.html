@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuditorIA 360 (v4 - Funcional)</title>
+    <title>AuditorIA 360</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: GMC360 2025 -->
+    <!-- Application Structure Plan: Se ha diseñado una SPA con una estructura de tres pestañas temáticas para separar claramente los casos de uso: 1) Guía Estratégica (consulta de información), 2) Asistente de Hallazgos (herramienta de trabajo para auditores) y 3) Simulador de Examen (herramienta de estudio). Esta arquitectura modular permite al usuario enfocarse en una tarea a la vez, mejorando la usabilidad. La navegación es simple y directa, facilitando el acceso a cada herramienta sin salir de la página. -->
+    <!-- Visualization & Content Choices: La "Guía Estratégica" utiliza texto estructurado con HTML y Tailwind para presentar el análisis ejecutivo. El objetivo es INFORMAR. Los módulos interactivos usarán menús desplegables (select) para la selección y mostrarán los resultados generados por la IA en bloques de texto dinámicos. El objetivo es ORGANIZAR la auditoría y PROBAR el conocimiento. Las visualizaciones se basan en texto dinámico generado por la IA, evitando gráficos complejos para mantener la claridad. Las interacciones se manejan con JavaScript y llamadas a una API externa (función Netlify). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         .bg-custom-purple { background-color: #8a62c4; }
@@ -32,60 +36,49 @@
 
     <main class="max-w-4xl mx-auto">
         <div class="flex flex-col sm:flex-row justify-center gap-2 mb-8 p-1 bg-gray-200 rounded-full">
-            <button data-module="guia" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🗺️ Guía Estratégica</button>
-            <button data-module="asistente" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🔍 Asistente de Hallazgos</button>
-            <button data-module="simulador" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">📝 Simulador de Examen</button>
+            <button id="btn-guia" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🗺️ Guía Estratégica</button>
+            <button id="btn-asistente" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">🔍 Asistente de Hallazgos</button>
+            <button id="btn-simulador" class="module-btn w-full text-center py-2 px-4 rounded-full transition-all duration-300">📝 Simulador de Examen</button>
         </div>
 
         <div id="module-guia" class="module-content fade-in">
-            <div class="bg-white p-6 rounded-lg shadow-md space-y-6 text-custom-dark-gray">
-                <h2 class="text-2xl font-semibold">Guía Estratégica de Auditoría PLD/FT</h2>
-                
-                <div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-2">Objetivo del Informe de Auditoría</h3>
-                    <p>Brindar la información necesaria para adoptar medidas que hagan más eficientes los procesos y herramientas para prevenir el Lavado de Dinero y Financiamiento al Terrorismo (LD/FT), así como para establecer planes de acción correctivos.</p>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-2">Requisitos Clave del Auditor</h3>
-                     <ul class="list-disc list-inside pl-4 space-y-1">
-                        <li>Contar con **Certificado vigente** emitido por la CNBV.</li>
-                        <li>Tener experiencia demostrable en materia de PLD/FT.</li>
-                        <li>No ser consejero, directivo, Oficial de Cumplimiento o empleado del Sujeto Supervisado (aplica a auditores externos).</li>
-                        <li>No tener litigios pendientes con el Sujeto Supervisado.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-2">Planeación de la Auditoría (Lineamiento SEXTO)</h3>
-                    <p>El auditor debe ejecutar una metodología que incluya, como mínimo:</p>
-                     <ul class="list-disc list-inside pl-4 space-y-1">
-                        <li><strong>Cuestionario Inicial:</strong> Para conocer al Sujeto Supervisado.</li>
-                        <li><strong>Análisis de Riesgos:</strong> Para evaluar la exposición al riesgo con base en productos, clientes, geografías y canales.</li>
-                        <li><strong>Programa de Trabajo:</strong> Con calendario, temas a evaluar y pruebas a realizar.</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="font-bold text-lg text-gray-800 mb-2">Los 5 Niveles de Cumplimiento (Calificaciones)</h3>
-                    <p>La evaluación de cada obligación debe resultar en una de cinco calificaciones posibles:</p>
-                    <ul class="list-disc list-inside pl-4 space-y-2">
-                        <li><strong>Cumple:</strong> La eficacia se demuestra totalmente y no se requieren mejoras.</li>
-                        <li><strong>Cumple Mayoritariamente:</strong> La eficacia no es completa; se requieren recomendaciones de mejora.</li>
-                        <li><strong>Cumple Parcialmente:</strong> No hay evidencia objetiva suficiente para demostrar la eficacia; se requiere al menos un hallazgo.</li>
-                        <li><strong>No Cumple:</strong> El cumplimiento no cubre los elementos necesarios o actualiza una sanción.</li>
-                        <li><strong>No Aplica:</strong> El requisito no es exigible por las características del Sujeto Supervisado.</li>
-                    </ul>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-6 text-custom-dark-gray border-b pb-4">Análisis Ejecutivo: Lineamientos de Auditoría PLD/FT</h2>
+                <div class="space-y-6 text-custom-gray">
+                    <section>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Introducción: La Auditoría como "Tercera Línea de Defensa"</h3>
+                        <p>Siguiendo las mejores prácticas internacionales (GAFI y Comité de Basilea), la función de auditoría se considera la <strong>tercera línea de defensa</strong> en la lucha contra el Lavado de Dinero. Su objetivo no es solo un requisito regulatorio, sino una evaluación crítica de la <strong>eficacia</strong> de todo el régimen preventivo de una entidad financiera. Los Lineamientos emitidos por la CNBV el 18 de octubre de 2021 establecen el estándar para este proceso.</p>
+                    </section>
+                    <section>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Apartado B: El Auditor - Quién Puede y Quién NO Puede Auditar</h3>
+                        <p>Esta sección define el perfil del responsable de la auditoría, enfocándose en su capacidad y, sobre todo, en su independencia.</p>
+                        <div class="mt-4 p-4 border-l-4 border-custom-purple bg-purple-50 rounded-r-lg">
+                            <h4 class="font-semibold text-lg text-custom-purple mb-2">Requisitos Clave del Auditor:</h4>
+                             <ul class="list-disc list-inside space-y-1">
+                                <li><strong>Certificado Vigente:</strong> Indispensable contar con la certificación de la CNBV en materia de PLD/FT.</li>
+                                <li><strong>Experiencia Comprobable:</strong> Mínimo 3 años de experiencia con licenciatura, o 5 años sin ella.</li>
+                             </ul>
+                        </div>
+                        <div class="mt-4 p-4 border-l-4 border-red-500 bg-red-50 rounded-r-lg">
+                             <h4 class="font-semibold text-lg text-red-700 mb-2">Los 7 "Pecados" del Auditor (Conflictos de Interés):</h4>
+                             <ul class="list-disc list-inside space-y-1">
+                                <li><strong>Ser o haber sido</strong> consejero, directivo, OC o empleado del Sujeto Supervisado en el último año.</li>
+                                <li>Formar parte de la <strong>estructura accionaria</strong>.</li>
+                                <li>Tener <strong>litigio pendiente</strong> con la entidad.</li>
+                                <li>Estar <strong>inhabilitado</strong> o haber sido sentenciado por delitos patrimoniales.</li>
+                             </ul>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
 
         <div id="module-asistente" class="module-content hidden fade-in">
             <div class="bg-white p-6 rounded-lg shadow-md">
-                 <h2 class="text-2xl font-semibold mb-4 text-custom-dark-gray">1. Seleccione la Obligación a Revisar</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-custom-dark-gray">1. Seleccione la Obligación a Revisar</h2>
                 <select id="obligation-select" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-custom-purple transition"></select>
                 <div id="selected-obligation-text" class="mt-4 p-4 bg-gray-100 rounded-md text-gray-700 min-h-[50px]">Seleccione una obligación del menú para ver su descripción.</div>
-                <button id="generate-guide-btn" class="mt-6 w-full bg-custom-purple text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-custom-purple-dark transition-all duration-300 flex items-center justify-center text-lg">✨ Generar Guía de Auditoría con IA</button>
+                <button id="generate-guide-btn" class="mt-6 w-full bg-custom-purple text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-custom-purple-dark transition-all duration-300 flex items-center justify-center text-lg disabled:opacity-50" disabled>✨ Generar Guía de Auditoría con IA</button>
                 <div id="loader-asistente" class="hidden mt-6 flex flex-col items-center justify-center text-center"><div class="spinner"></div><p class="text-custom-gray mt-2">Analizando... La IA está preparando su guía de auditoría.</p></div>
                 <div id="asistente-result" class="mt-6"></div>
             </div>
@@ -95,7 +88,7 @@
              <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-custom-dark-gray">1. Seleccione un Tema para Practicar</h2>
                  <select id="topic-select" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-custom-purple transition"></select>
-                <button id="generate-question-btn" class="mt-6 w-full bg-custom-purple text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-custom-purple-dark transition-all duration-300 flex items-center justify-center text-lg">🧠 Generar Pregunta de Caso Práctico</button>
+                <button id="generate-question-btn" class="mt-6 w-full bg-custom-purple text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-custom-purple-dark transition-all duration-300 flex items-center justify-center text-lg disabled:opacity-50" disabled>🧠 Generar Pregunta de Caso Práctico</button>
                 <div id="loader-simulador" class="hidden mt-6 flex flex-col items-center justify-center text-center"><div class="spinner"></div><p class="text-custom-gray mt-2">Creando un nuevo caso de estudio...</p></div>
                 <div id="simulador-result" class="mt-6"></div>
             </div>
@@ -105,25 +98,20 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const obligationsData = [
-                { id: 3, categoria: "1. IDENTIFICACIÓN", obligacion: "a) Cuenta con un Manual de Cumplimiento con los criterios, medidas y procedimientos internos para la debida Identificación del Cliente o Usuario, con base en los servicios, productos u Operaciones que ofrezca.", fuente_lineamiento: "Lineamiento Octavo, A, I, a)", fuente_disposicion_bancos: "Disposición 64ª" },
-                { id: 9, categoria: "1. IDENTIFICACIÓN", obligacion: "b) Identifica al Cliente o Usuario de conformidad con el perfil, características y tipo de Cliente o Usuario de que se trate, así como con los requisitos establecidos en las Disposiciones y en su Manual de Cumplimiento.", fuente_lineamiento: "Lineamiento Octavo, A, I, b)", fuente_disposicion_bancos: "Disposición 4ª" },
-                { id: 18, categoria: "2. METODOLOGÍA", obligacion: "a) Estableció en su Manual de Cumplimiento, o bien, en algún otro documento o manual elaborado por el Sujeto Supervisado, todos los procesos que se llevarán a cabo para la identificación, medición y mitigación de los Riesgos.", fuente_lineamiento: "Lineamiento Octavo, A, II, a)", fuente_disposicion_bancos: "Disposición 21ª-1" },
-                { id: 19, categoria: "2. METODOLOGÍA", obligacion: "b) Diseñó e implementó una metodología para llevar a cabo una evaluación de Riesgos a los que se encuentra expuesto.", fuente_lineamiento: "Lineamiento Octavo, A, II, b)", fuente_disposicion_bancos: "Disposición 21ª-1" },
-                { id: 30, categoria: "3. CONOCIMIENTO", obligacion: "c) Cuenta con un modelo de evaluación de Riesgos para determinar el Grado de Riesgo en que deba ubicarse a los Clientes o Usuarios.", fuente_lineamiento: "Lineamiento Octavo, A, III, c)", fuente_disposicion_bancos: "Disposición 25ª Bis" },
-                { id: 32, categoria: "3. CONOCIMIENTO", obligacion: "d) Cuenta con un sistema de alertas que le permite dar seguimiento y detectar oportunamente cambios en el comportamiento transaccional del Cliente o Usuario.", fuente_lineamiento: "Lineamiento Octavo, A, III, d)", fuente_disposicion_bancos: "Disposición 25ª Quáter" },
+                { id: 3, categoria: "1. IDENTIFICACIÓN", obligacion: "a) Cuenta con un Manual de Cumplimiento con los criterios, medidas y procedimientos internos para la debida Identificación del Cliente o Usuario.", fuente_lineamiento: "Lineamiento Octavo, A, I, a)", fuente_disposicion_bancos: "Disposición 64ª" },
+                { id: 9, categoria: "1. IDENTIFICACIÓN", obligacion: "b) Identifica al Cliente o Usuario de conformidad con el perfil, características y tipo de Cliente o Usuario.", fuente_lineamiento: "Lineamiento Octavo, A, I, b)", fuente_disposicion_bancos: "Disposición 4ª" },
+                { id: 18, categoria: "2. METODOLOGÍA", obligacion: "a) Estableció procesos para la identificación, medición y mitigación de los Riesgos.", fuente_lineamiento: "Lineamiento Octavo, A, II, a)", fuente_disposicion_bancos: "Disposición 21ª-1" },
+                { id: 19, categoria: "2. METODOLOGÍA", obligacion: "b) Diseñó e implementó una metodología para la evaluación de Riesgos.", fuente_lineamiento: "Lineamiento Octavo, A, II, b)", fuente_disposicion_bancos: "Disposición 21ª-1" },
+                { id: 30, categoria: "3. CONOCIMIENTO", obligacion: "c) Cuenta con un modelo de evaluación de Riesgos para determinar el Grado de Riesgo de los Clientes.", fuente_lineamiento: "Lineamiento Octavo, A, III, c)", fuente_disposicion_bancos: "Disposición 25ª Bis" },
+                { id: 32, categoria: "3. CONOCIMIENTO", obligacion: "d) Cuenta con un sistema de alertas para detectar cambios en el comportamiento transaccional.", fuente_lineamiento: "Lineamiento Octavo, A, III, d)", fuente_disposicion_bancos: "Disposición 25ª Quáter" },
                 { id: 44, categoria: "4. REPORTES", obligacion: "a) Presentó en tiempo y forma, los reportes de Operaciones Relevantes.", fuente_lineamiento: "Lineamiento Octavo, A, IV, a)", fuente_disposicion_bancos: "Disposición 34ª" },
-                { id: 45, categoria: "4. REPORTES", obligacion: "b) Presentó en tiempo y forma los reportes por cada Operación Inusual alertada.", fuente_lineamiento: "Lineamiento Octavo, A, IV, b)", fuente_disposicion_bancos: "Disposición 37ª" },
-                { id: 48, categoria: "4. REPORTES", obligacion: "d) Presentó en tiempo y forma el reporte de cada Operación Interna Preocupante alertada.", fuente_lineamiento: "Lineamiento Octavo, A, IV, d)", fuente_disposicion_bancos: "Disposición 42ª" },
-                { id: 54, categoria: "5. ESTRUCTURAS INTERNAS", obligacion: "a) Integró el Comité de conformidad con las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, V, a)", fuente_disposicion_bancos: "Disposición 43ª" },
-                { id: 58, categoria: "5. ESTRUCTURAS INTERNAS", obligacion: "d) Realizó la designación o revocación del Oficial de Cumplimiento.", fuente_lineamiento: "Lineamiento Octavo, A, V, d)", fuente_disposicion_bancos: "Disposición 47ª" },
-                { id: 64, categoria: "6. CAPACITACIÓN", obligacion: "a) Cuenta con un programa anual de capacitación.", fuente_lineamiento: "Lineamiento Octavo, A, VI, a)", fuente_disposicion_bancos: "Disposición 49ª" },
-                { id: 70, categoria: "7. INFRAESTRUCTURA TECNOLÓGICA", obligacion: "De la Infraestructura Tecnológica, deberá incluir si el Sujeto Supervisado cuenta con sistemas automatizados que desarrollen la totalidad de las funciones señaladas en las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, VII", fuente_disposicion_bancos: "Disposición 51ª" },
-                { id: 75, categoria: "9. CONSERVACIÓN", obligacion: "a) Cuenta con mecanismos para conservar, por un periodo no menor a diez años [...] los reportes de Operaciones [...] y los expedientes de identificación de Clientes.", fuente_lineamiento: "Lineamiento Octavo, A, IX, a)", fuente_disposicion_bancos: "Disposición 59ª" },
-                { id: 83, categoria: "10. LISTAS", obligacion: "a) Cuenta con las listas oficialmente reconocidas que emitan autoridades mexicanas [...] de personas vinculadas con PLD/FT.", fuente_lineamiento: "Lineamiento Octavo, A, X, a)", fuente_disposicion_bancos: "Disposición 70ª" }
+                { id: 45, categoria: "4. REPORTES", obligacion: "b) Presentó en tiempo y forma los reportes de Operaciones Inusuales.", fuente_lineamiento: "Lineamiento Octavo, A, IV, b)", fuente_disposicion_bancos: "Disposición 37ª" },
+                { id: 48, categoria: "4. REPORTES", obligacion: "d) Presentó en tiempo y forma los reportes de Operaciones Internas Preocupantes.", fuente_lineamiento: "Lineamiento Octavo, A, IV, d)", fuente_disposicion_bancos: "Disposición 42ª" },
+                { id: 54, categoria: "5. ESTRUCTURAS INTERNAS", obligacion: "a) Integró el Comité de Comunicación y Control de conformidad con las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, V, a)", fuente_disposicion_bancos: "Disposición 43ª" },
             ];
 
-            const moduleButtons = document.querySelectorAll('.module-btn');
-            const moduleContents = document.querySelectorAll('.module-content');
+            const buttons = [ document.getElementById('btn-guia'), document.getElementById('btn-asistente'), document.getElementById('btn-simulador') ];
+            const modules = [ document.getElementById('module-guia'), document.getElementById('module-asistente'), document.getElementById('module-simulador') ];
             const loaders = { asistente: document.getElementById('loader-asistente'), simulador: document.getElementById('loader-simulador') };
             const results = { asistente: document.getElementById('asistente-result'), simulador: document.getElementById('simulador-result') };
             const obligationSelect = document.getElementById('obligation-select');
@@ -131,20 +119,19 @@
             const selectedObligationText = document.getElementById('selected-obligation-text');
             const generateGuideBtn = document.getElementById('generate-guide-btn');
             const generateQuestionBtn = document.getElementById('generate-question-btn');
-            
-            function setupTabs() {
-                moduleButtons[0].classList.add('active');
-                moduleContents.forEach((content, index) => {
-                    if (index !== 0) content.classList.add('hidden');
-                });
 
-                moduleButtons.forEach(button => {
+            function setupTabs() {
+                buttons[0].classList.add('active');
+                modules[0].classList.remove('hidden');
+                modules[1].classList.add('hidden');
+                modules[2].classList.add('hidden');
+                
+                buttons.forEach((button, index) => {
                     button.addEventListener('click', () => {
-                        moduleButtons.forEach(btn => btn.classList.remove('active'));
+                        buttons.forEach(btn => btn.classList.remove('active'));
                         button.classList.add('active');
-                        const targetModule = document.getElementById(`module-${button.dataset.module}`);
-                        moduleContents.forEach(content => content.classList.add('hidden'));
-                        targetModule.classList.remove('hidden');
+                        modules.forEach(module => module.classList.add('hidden'));
+                        modules[index].classList.remove('hidden');
                     });
                 });
             }
@@ -171,14 +158,15 @@
                     topicSelect.appendChild(option);
                 });
             }
-
+            
             async function handleApiCall(module, payload) {
                 const btn = module === 'asistente' ? generateGuideBtn : generateQuestionBtn;
                 loaders[module].classList.remove('hidden');
                 results[module].innerHTML = '';
                 btn.disabled = true;
+
                 try {
-                    const response = await fetch('/api/geminiProxy', {
+                    const response = await fetch('/.netlify/functions/geminiProxy', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -197,7 +185,7 @@
                     if (module === 'simulador') renderSimuladorResult(data);
                 } catch (error) {
                     console.error("Error:", error);
-                    results[module].innerHTML = `<p class="text-red-600 p-4 bg-red-100 rounded-md">Ocurrió un error al contactar a la IA. Revisa la consola para más detalles.</p>`;
+                    results[module].innerHTML = `<p class="text-red-600 p-4 bg-red-100 rounded-md">Ocurrió un error al contactar a la IA. Revisa la consola para más detalles. (Nota: esta función requiere despliegue en Netlify para operar).</p>`;
                 } finally {
                     loaders[module].classList.add('hidden');
                     btn.disabled = false;
@@ -208,7 +196,7 @@
                 const { pruebas_sugeridas = [], posibles_hallazgos = [], recomendaciones_mejora = [] } = data;
                 results.asistente.innerHTML = `<div class="border border-gray-200 rounded-lg p-4 fade-in space-y-4"><div><h3 class="text-lg font-semibold mb-2 text-custom-purple">▶️ Pruebas de Auditoría Sugeridas</h3><ul class="list-disc list-inside space-y-1 text-custom-gray">${pruebas_sugeridas.map(item => `<li>${item}</li>`).join('')}</ul></div><div><h3 class="text-lg font-semibold mb-2 text-custom-purple">⚠️ Posibles Hallazgos</h3><ul class="list-disc list-inside space-y-1 text-custom-gray">${posibles_hallazgos.map(item => `<li>${item}</li>`).join('')}</ul></div><div><h3 class="text-lg font-semibold mb-2 text-custom-purple">💡 Recomendaciones de Mejora</h3><ul class="list-disc list-inside space-y-1 text-custom-gray">${recomendaciones_mejora.map(item => `<li>${item}</li>`).join('')}</ul></div></div>`;
             }
-            
+
             function renderSimuladorResult(data) {
                 const { caso_practico, pregunta, opciones, respuesta_correcta, justificacion } = data;
                 let optionsHtml = Object.keys(opciones).map(key => `<label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"><input type="radio" name="quiz-option" value="${key}" class="form-radio text-purple-600"><span class="ml-3 text-gray-700"><strong>${key})</strong> ${opciones[key]}</span></label>`).join('');
@@ -229,19 +217,21 @@
                 });
             }
 
-            setupTabs();
-            populateSelects();
-
             obligationSelect.addEventListener('change', () => {
                 const selected = obligationsData.find(item => item.id == obligationSelect.value);
                 selectedObligationText.textContent = selected ? selected.obligacion : '';
+                generateGuideBtn.disabled = !selected;
             });
 
+            topicSelect.addEventListener('change', () => {
+                generateQuestionBtn.disabled = !topicSelect.value;
+            });
+            
             generateGuideBtn.addEventListener('click', () => {
                 const selectedId = obligationSelect.value;
                 if (!selectedId) { alert('Por favor, seleccione una obligación.'); return; }
                 const obligation = obligationsData.find(item => item.id == selectedId);
-                const prompt = \`Actúa como un auditor experto en PLD/FT en México. Basado en la siguiente obligación de auditoría, genera una guía práctica. La obligación es: '\${obligation.obligacion}', fundamentada en '\${obligation.fuente_lineamiento}' y revisa el cumplimiento de la '\${obligation.fuente_disposicion_bancos}'. Responde únicamente con un objeto JSON válido con las claves "pruebas_sugeridas", "posibles_hallazgos", y "recomendaciones_mejora", cada una con un array de 3 a 4 strings concisos.\`;
+                const prompt = `Actúa como un auditor experto en PLD/FT en México. Basado en la obligación de auditoría: '${obligation.obligacion}', fundamentada en '${obligation.fuente_lineamiento}' y que revisa el cumplimiento de la '${obligation.fuente_disposicion_bancos}'. Genera una guía práctica inspirada en la estructura de un dictamen real. Responde únicamente con un objeto JSON válido con las claves "pruebas_sugeridas", "posibles_hallazgos", y "recomendaciones_mejora", cada una con un array de 3 a 4 strings concisos y profesionales.`;
                 const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json" } };
                 handleApiCall('asistente', payload);
             });
@@ -249,10 +239,13 @@
             generateQuestionBtn.addEventListener('click', () => {
                 const selectedTopic = topicSelect.value;
                 if (!selectedTopic) { alert('Por favor, seleccione un tema.'); return; }
-                const prompt = \`Actúa como un creador de exámenes para la certificación de auditores PLD/FT en México. Genera un caso práctico y una pregunta de opción múltiple sobre el tema "\${selectedTopic}". Responde únicamente con un objeto JSON válido con las claves "caso_practico", "pregunta", "opciones" (un objeto con A,B,C,D), "respuesta_correcta" (la letra), y "justificacion" (explicando la respuesta y citando la normativa si es posible).\`;
+                const prompt = `Actúa como un creador de exámenes para la certificación de auditores PLD/FT en México. Genera un caso práctico y una pregunta de opción múltiple sobre el tema "${selectedTopic}". Responde únicamente con un objeto JSON válido con las claves "caso_practico", "pregunta", "opciones" (un objeto con A,B,C,D), "respuesta_correcta" (la letra), y "justificacion" (explicando la respuesta y citando la normativa de forma concisa).`;
                 const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json" } };
                 handleApiCall('simulador', payload);
             });
+
+            setupTabs();
+            populateSelects();
         });
     </script>
 </body>
