@@ -45,12 +45,10 @@
              <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-6 text-custom-dark-gray border-b pb-4">Guía Estratégica de los Lineamientos de Auditoría</h2>
                 <div class="space-y-8 text-custom-gray">
-                    
                     <section>
                         <h3 class="font-bold text-xl text-gray-800 mb-2">Apartado A: Preliminares</h3>
                         <p>Establece el objetivo y alcance de los lineamientos, que es normar la <strong>contratación</strong> del auditor, la <strong>elaboración</strong> del informe y su <strong>remisión</strong> a la CNBV.</p>
                     </section>
-                    
                     <section>
                         <h3 class="font-bold text-xl text-gray-800 mb-2">Apartado B: El Auditor</h3>
                         <p>Define el perfil profesional y ético del auditor para garantizar su capacidad e independencia.</p>
@@ -68,7 +66,6 @@
                              </ul>
                         </div>
                     </section>
-
                     <section>
                         <h3 class="font-bold text-xl text-gray-800 mb-2">Apartado C: La Elaboración del Informe</h3>
                         <p>Describe el proceso metodológico de la auditoría, desde la preparación hasta las conclusiones.</p>
@@ -84,7 +81,6 @@
                             </ul>
                         </div>
                     </section>
-                    
                     <section>
                         <h3 class="font-bold text-xl text-gray-800 mb-2">Apartado D: El Informe Final</h3>
                          <p>Regula la presentación, entrega y resguardo del documento final, asegurando su formalidad y validez. El informe debe ser remitido a la CNBV a través del portal SITI PLD/FT.</p>
@@ -118,24 +114,65 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const obligationsData = [
-                { id: 3, categoria: "1. IDENTIFICACIÓN", obligacion: "a) Cuenta con un Manual de Cumplimiento con los criterios, medidas y procedimientos internos para la debida Identificación del Cliente o Usuario.", fuente_lineamiento: "Lineamiento Octavo, A, I, a)", fuente_disposicion_bancos: "Disposición 64ª" },
-                { id: 9, categoria: "1. IDENTIFICACIÓN", obligacion: "b) Identifica al Cliente o Usuario de conformidad con el perfil, características y tipo de Cliente o Usuario.", fuente_lineamiento: "Lineamiento Octavo, A, I, b)", fuente_disposicion_bancos: "Disposición 4ª" },
-                { id: 18, categoria: "2. METODOLOGÍA", obligacion: "a) Estableció procesos para la identificación, medición y mitigación de los Riesgos.", fuente_lineamiento: "Lineamiento Octavo, A, II, a)", fuente_disposicion_bancos: "Disposición 21ª-1" },
-                { id: 19, categoria: "2. METODOLOGÍA", obligacion: "b) Diseñó e implementó una metodología para la evaluación de Riesgos.", fuente_lineamiento: "Lineamiento Octavo, A, II, b)", fuente_disposicion_bancos: "Disposición 21ª-1" },
-                { id: 30, categoria: "3. CONOCIMIENTO", obligacion: "c) Cuenta con un modelo de evaluación de Riesgos para determinar el Grado de Riesgo de los Clientes.", fuente_lineamiento: "Lineamiento Octavo, A, III, c)", fuente_disposicion_bancos: "Disposición 25ª Bis" },
-                { id: 32, categoria: "3. CONOCIMIENTO", obligacion: "d) Cuenta con un sistema de alertas para detectar cambios en el comportamiento transaccional.", fuente_lineamiento: "Lineamiento Octavo, A, III, d)", fuente_disposicion_bancos: "Disposición 25ª Quáter" },
-                { id: 44, categoria: "4. REPORTES", obligacion: "a) Presentó en tiempo y forma, los reportes de Operaciones Relevantes.", fuente_lineamiento: "Lineamiento Octavo, A, IV, a)", fuente_disposicion_bancos: "Disposición 34ª" },
-                { id: 45, categoria: "4. REPORTES", obligacion: "b) Presentó en tiempo y forma los reportes de Operaciones Inusuales.", fuente_lineamiento: "Lineamiento Octavo, A, IV, b)", fuente_disposicion_bancos: "Disposición 37ª" },
-                { id: 48, categoria: "4. REPORTES", obligacion: "d) Presentó en tiempo y forma los reportes de Operaciones Internas Preocupantes.", fuente_lineamiento: "Lineamiento Octavo, A, IV, d)", fuente_disposicion_bancos: "Disposición 42ª" },
-                { id: 54, categoria: "5. ESTRUCTURAS INTERNAS", obligacion: "a) Integró el Comité de Comunicación y Control de conformidad con las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, V, a)", fuente_disposicion_bancos: "Disposición 43ª" },
-                { id: 58, categoria: "5. ESTRUCTURAS INTERNAS", obligacion: "d) Realizó la designación del Oficial de Cumplimiento.", fuente_lineamiento: "Lineamiento Octavo, A, V, d)", fuente_disposicion_bancos: "Disposición 47ª" },
-                { id: 64, categoria: "6. CAPACITACIÓN", obligacion: "a) Cuenta con un programa anual de capacitación y difusión.", fuente_lineamiento: "Lineamiento Octavo, A, VI, a)", fuente_disposicion_bancos: "Disposición 49ª" },
-                { id: 70, categoria: "7. INFRAESTRUCTURA TECNOLÓGICA", obligacion: "Cuenta con sistemas automatizados para el cumplimiento de las funciones señaladas en las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, VII", fuente_disposicion_bancos: "Disposición 51ª" },
-                { id: 71, categoria: "8. EMPLEADOS", obligacion: "a) Cuenta con procedimientos de selección de personal adecuados.", fuente_lineamiento: "Lineamiento Octavo, A, VIII, a)", fuente_disposicion_bancos: "Disposición 57ª" },
-                { id: 75, categoria: "9. CONSERVACIÓN", obligacion: "a) Cuenta con mecanismos para conservar por un periodo no menor a diez años los expedientes y reportes.", fuente_lineamiento: "Lineamiento Octavo, A, IX, a)", fuente_disposicion_bancos: "Disposición 59ª" },
-                { id: 83, categoria: "10. LISTAS", obligacion: "a) Cuenta con las listas oficialmente reconocidas (Listas Negras).", fuente_lineamiento: "Lineamiento Octavo, A, X, a)", fuente_disposicion_bancos: "Disposición 70ª" },
-                { id: 91, categoria: "11. INTERCAMBIO DE INFORMACIÓN", obligacion: "a) Intercambió información de conformidad con la forma y términos que se establecen en las Disposiciones.", fuente_lineamiento: "Lineamiento Octavo, A, XI, a)", fuente_disposicion_bancos: "Disposición 62ª" },
-                { id: 109, categoria: "14. COMISIONISTAS", obligacion: "a) Realiza la revisión de las obligaciones relacionadas con comisionistas.", fuente_lineamiento: "Lineamiento Octavo, A, XIV, a)", fuente_disposicion_bancos: "Disposición 63ª" },
+                {id: 3,categoria: "1. IDENTIFICACIÓN",obligacion: "I.a) Cuenta con un Manual de Cumplimiento con criterios para la debida Identificación del Cliente/Usuario."},
+                {id: 7,categoria: "1. IDENTIFICACIÓN",obligacion: "I.b) Identifica al Cliente/Usuario conforme al perfil, características y requisitos de las Disposiciones."},
+                {id: 12,categoria: "1. IDENTIFICACIÓN",obligacion: "I.c) Aplica políticas de identificación en Cuentas Concentradoras."},
+                {id: 13,categoria: "1. IDENTIFICACIÓN",obligacion: "I.d) Cuenta con mecanismos de seguimiento, agrupación y escalamiento de aprobación interna."},
+                {id: 14,categoria: "1. IDENTIFICACIÓN",obligacion: "I.e) Cuenta con políticas para verificar expedientes y reclasificar por Grado de Riesgo."},
+                {id: 16,categoria: "1. IDENTIFICACIÓN",obligacion: "I.f) Ha realizado visitas al domicilio del Cliente/Usuario de conformidad con las Disposiciones."},
+                {id: 18,categoria: "2. METODOLOGÍA",obligacion: "II.a) Estableció procesos para la identificación, medición y mitigación de Riesgos."},
+                {id: 19,categoria: "2. METODOLOGÍA",obligacion: "II.b) Diseñó e implementó una metodología para la evaluación de Riesgos."},
+                {id: 20,categoria: "2. METODOLOGÍA",obligacion: "II.c) Consideró el total de productos, servicios, clientes, etc., en la identificación de indicadores de Riesgo."},
+                {id: 21,categoria: "2. METODOLOGÍA",obligacion: "II.d) Utilizó un método para la medición de Riesgos y asignó pesos de manera consistente."},
+                {id: 22,categoria: "2. METODOLOGÍA",obligacion: "II.e) Identificó Mitigantes y su efectiva aplicación."},
+                {id: 23,categoria: "2. METODOLOGÍA",obligacion: "II.f) Modificó políticas y procedimientos en función de los Riesgos identificados."},
+                {id: 25,categoria: "2. METODOLOGÍA",obligacion: "II.g) Puso en funcionamiento la metodología sin inconsistencias y con información de al menos 12 meses."},
+                {id: 26,categoria: "2. METODOLOGÍA",obligacion: "II.h) Realizó la valoración de la Metodología, revisando su eficiencia y eficacia."},
+                {id: 28,categoria: "3. CONOCIMIENTO",obligacion: "III.a) Cuenta con Manual que contenga criterios para el debido conocimiento del Cliente/Usuario."},
+                {id: 29,categoria: "3. CONOCIMIENTO",obligacion: "III.b) Cuenta con criterios para determinar el perfil y comportamiento transaccional del Cliente/Usuario."},
+                {id: 30,categoria: "3. CONOCIMIENTO",obligacion: "III.c) Cuenta con un modelo de evaluación de Riesgos para determinar el Grado de Riesgo de los Clientes."},
+                {id: 32,categoria: "3. CONOCimiento",obligacion: "III.d) Cuenta con un sistema de alertas para detectar cambios en el comportamiento transaccional."},
+                {id: 33,categoria: "3. CONOCIMIENTO",obligacion: "III.e) Cuenta con criterios para la supervisión del comportamiento transaccional de Clientes de alto Riesgo."},
+                {id: 34,categoria: "3. CONOCIMIENTO",obligacion: "III.f) Cuenta con criterios relacionados con Personas Políticamente Expuestas (PEPs)."},
+                {id: 35,categoria: "3. CONOCIMIENTO",obligacion: "III.g) Ha realizado Operaciones con PEPs de alto Riesgo, aprobadas de conformidad con las Disposiciones."},
+                {id: 36,categoria: "3. CONOCIMIENTO",obligacion: "III.h) Ha realizado Operaciones de alto Riesgo, aprobadas de conformidad con las Disposiciones."},
+                {id: 37,categoria: "3. CONOCIMIENTO",obligacion: "III.i) Cuenta con políticas para identificar al Propietario Real."},
+                {id: 38,categoria: "3. CONOCIMIENTO",obligacion: "III.j) Cuenta con criterios para identificar operaciones con otros Sujetos Supervisados."},
+                {id: 42,categoria: "3. CONOCIMIENTO",obligacion: "III.k) Cuenta con políticas para identificar a Clientes/Usuarios en la Lista de Personas Bloqueadas."},
+                {id: 44,categoria: "4. REPORTES",obligacion: "IV.a) Presentó en tiempo y forma los reportes de Operaciones Relevantes."},
+                {id: 45,categoria: "4. REPORTES",obligacion: "IV.b) Presentó en tiempo y forma los reportes de Operaciones Inusuales."},
+                {id: 47,categoria: "4. REPORTES",obligacion: "IV.c) Presentó en tiempo y forma los Reportes de 24 horas."},
+                {id: 48,categoria: "4. REPORTES",obligacion: "IV.d) Presentó en tiempo y forma los reportes de Operaciones Internas Preocupantes."},
+                {id: 50,categoria: "4. REPORTES",obligacion: "IV.e) Presentó en tiempo y forma los demás reportes (transferencias, dólares en efectivo, etc.)."},
+                {id: 52,categoria: "4. REPORTES",obligacion: "El auditor debe señalar operaciones omitidas, fuera de plazo o que contravengan las Disposiciones."},
+                {id: 54,categoria: "5. ESTRUCTURAS INTERNAS",obligacion: "V.a) Integró el Comité de Comunicación y Control (CCC) de conformidad con las Disposiciones."},
+                {id: 55,categoria: "5. ESTRUCTURAS INTERNAS",obligacion: "V.b) Comunicó la integración inicial y cambios de su CCC a la autoridad."},
+                {id: 58,categoria: "5. ESTRUCTURAS INTERNAS",obligacion: "V.d) Realizó la designación o revocación del Oficial de Cumplimiento (OC)."},
+                {id: 59,categoria: "5. ESTRUCTURAS INTERNAS",obligacion: "V.e) Comunicó la designación o revocación de su OC a la autoridad."},
+                {id: 64,categoria: "6. CAPACITACIÓN Y DIFUSIÓN",obligacion: "VI.a) Cuenta con un programa anual de capacitación coherente con la Metodología de Riesgos."},
+                {id: 65,categoria: "6. CAPACITACIÓN Y DIFUSIÓN",obligacion: "VI.b) Impartió cursos de capacitación a todo el personal relevante."},
+                {id: 66,categoria: "6. CAPACITACIÓN Y DIFUSIÓN",obligacion: "VI.c) Difundió las Disposiciones, sus modificaciones y tendencias en PLD/FT."},
+                {id: 67,categoria: "6. CAPACITACIÓN Y DIFUSIÓN",obligacion: "VI.d) Expidió constancias que acreditan la participación en los cursos."},
+                {id: 68,categoria: "6. CAPACITACIÓN Y DIFUSIÓN",obligacion: "VI.e) Cuenta con medidas para el caso de calificaciones no satisfactorias."},
+                {id: 69,categoria: "7. INFRAESTRUCTURA TECNOLÓGICA",obligacion: "VII. Cuenta con sistemas automatizados que desarrollen todas las funciones de las Disposiciones."},
+                {id: 71,categoria: "8. EMPLEADOS",obligacion: "VIII.a) Cuenta con procedimientos de selección de empleados."},
+                {id: 72,categoria: "8. EMPLEADOS",obligacion: "VIII.b) Cuenta con expedientes de cada uno de los empleados."},
+                {id: 73,categoria: "8. EMPLEADOS",obligacion: "VIII.c) Cuenta con constancias de capacitación previa o simultánea al ingreso."},
+                {id: 75,categoria: "9. CONSERVACIÓN",obligacion: "IX.a) Cuenta con mecanismos para conservar por 10 años reportes y expedientes."},
+                {id: 76,categoria: "9. CONSERVACIÓN",obligacion: "IX.b) Conserva por 10 años los reportes y expedientes."},
+                {id: 78,categoria: "9. CONSERVACIÓN",obligacion: "IX.c) Cuenta con mecanismos para conservar por 5 años los informes de auditoría."},
+                {id: 82,categoria: "10. LISTAS",obligacion: "X.a) Cuenta con listas oficiales de personas vinculadas a PLD/FT."},
+                {id: 85,categoria: "10. LISTAS",obligacion: "X.b) Cuenta con la lista de Personas Políticamente Expuestas."},
+                {id: 86,categoria: "10. LISTAS",obligacion: "X.c) Cuenta con listas de países con regímenes fiscales preferentes."},
+                {id: 87,categoria: "10. LISTAS",obligacion: "X.d) Cuenta con listas de países con medidas deficientes en PLD/FT."},
+                {id: 89,categoria: "10. LISTAS",obligacion: "X.e) Cuenta con la Lista de Personas Bloqueadas."},
+                {id: 90,categoria: "10. LISTAS",obligacion: "X.f) Ha implementado las medidas establecidas en caso de identificar a un cliente en dichas listas."},
+                {id: 92,categoria: "11. INTERCAMBIO DE INFORMACIÓN",obligacion: "XI.a) Intercambió información conforme a la forma y términos de las Disposiciones."},
+                {id: 94,categoria: "12. MODELOS NOVEDOSOS",obligacion: "XII.a) Obtuvo la autorización de la CNBV para operar con Modelos Novedosos."},
+                {id: 101,categoria: "13. OTRA INFORMACIÓN",obligacion: "XIII.a) Comunicó en tiempo y forma la información sobre la persona o grupo que ejerce el Control."},
+                {id: 102,categoria: "13. OTRA INFORMACIÓN",obligacion: "XIII.b) Comunicó en tiempo y forma la transmisión de acciones por más del 2%."},
+                {id: 107,categoria: "13. OTRA INFORMACIÓN",obligacion: "XIII.e) Subsanó las observaciones, recomendaciones y acciones correctivas de la CNBV."},
+                {id: 109,categoria: "14. COMISIONISTAS",obligacion: "XIV.a) Realiza la revisión de las obligaciones relacionadas con comisionistas."},
             ];
             
             const buttons = [ document.getElementById('btn-guia'), document.getElementById('btn-asistente'), document.getElementById('btn-simulador') ];
