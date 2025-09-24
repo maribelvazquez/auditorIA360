@@ -217,8 +217,13 @@
                     obligationSelect.appendChild(optgroup);
                 });
                 topicSelect.innerHTML = '<option value="" disabled selected>-- Elija un tema --</option>';
-                categories.forEach(category => {
-                    const option = document.createElement('option');
+                const uniqueCategories = [...new Set(categories.map(c => c.split('. ')[1]))];
+                
+                const finalCategories = [...new Map(categories.map(item =>
+                    [item.match(/\d+\. (.*)/)[1], item])).values()];
+
+                finalCategories.forEach(category => {
+                     const option = document.createElement('option');
                     option.value = category;
                     option.textContent = category;
                     topicSelect.appendChild(option);
@@ -297,7 +302,7 @@
                 const selectedId = obligationSelect.value;
                 if (!selectedId) { alert('Por favor, seleccione una obligación.'); return; }
                 const obligation = obligationsData.find(item => item.id == selectedId);
-                const prompt = `Actúa como un auditor experto en PLD/FT en México. Basado en la obligación de auditoría: '${obligation.obligacion}', fundamentada en '${obligation.fuente_lineamiento}' y que revisa el cumplimiento de la '${obligation.fuente_disposicion_bancos}'. Genera una guía práctica inspirada en la estructura de un dictamen real de GMC360. Responde únicamente con un objeto JSON válido con las claves "pruebas_sugeridas", "posibles_hallazgos", y "recomendaciones_mejora", cada una con un array de 3 a 4 strings concisos y profesionales.`;
+                const prompt = `Actúa como un auditor experto en PLD/FT en México. Basado en la obligación de auditoría: '${obligation.obligacion}'. Genera una guía práctica inspirada en la estructura de un dictamen real de GMC360. Responde únicamente con un objeto JSON válido con las claves "pruebas_sugeridas", "posibles_hallazgos", y "recomendaciones_mejora", cada una con un array de 3 a 4 strings concisos y profesionales.`;
                 const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json" } };
                 handleApiCall('asistente', payload);
             });
@@ -305,7 +310,7 @@
             generateQuestionBtn.addEventListener('click', () => {
                 const selectedTopic = topicSelect.value;
                 if (!selectedTopic) { alert('Por favor, seleccione un tema.'); return; }
-                const prompt = `Actúa como un creador de exámenes para la certificación de auditores PLD/FT en México, inspirado en el estilo de un dictamen de GMC360. Genera un caso práctico realista y una pregunta de opción múltiple sobre el tema "${selectedTopic}". Responde únicamente con un objeto JSON válido con las claves "caso_practico", "pregunta", "opciones" (un objeto con A,B,C,D), "respuesta_correcta" (la letra), y "justificacion" (explicando la respuesta y citando la normativa de forma concisa).`;
+                const prompt = `Actúa como un creador de exámenes para la certificación de auditores PLD/FT en México. Genera un caso práctico realista y una pregunta de opción múltiple sobre el tema "${selectedTopic}". Responde únicamente con un objeto JSON válido con las claves "caso_practico", "pregunta", "opciones" (un objeto con A,B,C,D), "respuesta_correcta" (la letra), y "justificacion" (un string que explique el fundamento conceptual de la respuesta, sin citar artículos específicos).`;
                 const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json" } };
                 handleApiCall('simulador', payload);
             });
@@ -316,3 +321,4 @@
     </script>
 </body>
 </html>
+
